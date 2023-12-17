@@ -1,4 +1,3 @@
-
 <?php 
 include("Connexion/Connection.php");
 
@@ -9,8 +8,9 @@ class sign_in extends Connection {
         $sqlCheck = "SELECT * FROM `user` WHERE `email` = '$email'";
         $result = $conn->query($sqlCheck);
 
-        if ($result && $result->num_rows > 0) {
 
+        if ($result && $result->num_rows > 0) {
+            
             $row = $result->fetch_assoc();
 
             $HachPass = $row['password'];
@@ -21,14 +21,24 @@ class sign_in extends Connection {
             
                 if($role == 1)
                 {
+                    session_start();
+              
+                    $_SESSION['id_user'] = $row['id'];
+                    
                     return 'admin';
+             
 
                 }
                 else if($role == 2)
                 {
+                    session_start();
+                    $_SESSION['id_user'] = $row['id'];  
+
                     return 'condidat';
                     
                 }
+                
+
             }
              else {
                  return 0;
@@ -41,6 +51,3 @@ class sign_in extends Connection {
 
   
 ?>
-
-
-

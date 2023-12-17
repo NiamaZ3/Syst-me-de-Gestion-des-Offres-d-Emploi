@@ -40,9 +40,5 @@ if(isset($_GET["titre"])){
         </ul>
     </div>
 </article>
-
-
-
-<?php
-              }
-            ?>
+<?php 
+}
