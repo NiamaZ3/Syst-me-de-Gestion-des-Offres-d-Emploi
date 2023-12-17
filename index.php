@@ -70,16 +70,16 @@
 		<h2>Find Your Dream Job</h2>
 		<form class="form-inline">
 			<div class="form-group mb-2">
-				<input type="text" name="keywords" placeholder="Keywords">
+				<input type="text" name="keywords" placeholder="search" onclick="search()">
 
 
 			</div>
-			<div class="form-group mx-sm-3 mb-2">
+			<!-- <div class="form-group mx-sm-3 mb-2">
 				<input type="text" name="location" placeholder="Location">
 			</div>
 			<div class="form-group mx-sm-3 mb-2">
 				<input type="text" name="company" placeholder="Company">
-			</div>
+			</div> -->
 			<button type="submit" class="btn btn-primary mb-2">Search</button>
 		</form>
 	</section>
@@ -89,43 +89,29 @@
 		<h2 class="text-center py-3">Latest Job Listings</h2>
 		<div class="container py-2">
 
-			<article class="postcard light green">
-				<a class="postcard__img_link" href="#">
-					<img class="postcard__img" src="https://picsum.photos/300/300" alt="Image Title" />
-				</a>
-				<div class="postcard__text t-dark">
-					<h3 class="postcard__title green"><a href="#">Experienced Web Developer in Python .</a></h3>
-					<div class="postcard__subtitle small">
-						<time datetime="2020-05-25 12:00:00">
-							<i class="fas fa-calendar-alt mr-2"></i>Mon, May 26th 2023
-						</time>
-					</div>
-					<div class="postcard__bar"></div>
-					<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim,!</div>
-					<ul class="postcard__tagbox">
-						<li class="tag__item"><i class="fas fa-tag mr-2"></i>Maroc</li>
-						<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
-						<li class="tag__item play green">
-							<a href="#"><i class="fas fa-play mr-2"></i>APPLY NOW</a>
-						</li>
-					</ul>
-				</div>
-			</article>
+			<?php include("connexion/Connection.php");
+				$Connexion = new Connection();
+				$conn = $Connexion->conn; 
+
+				$sql = "SELECT * FROM `offre`";
+				$result = mysqli_query( $conn, $sql );
+				while($row = mysqli_fetch_assoc($result)){?>
+		
 			<article class="postcard light yellow">
 				<a class="postcard__img_link" href="#">
-					<img class="postcard__img" src="https://picsum.photos/300/300" alt="Image Title" />
+					<img class="postcard__img" src="uploads/<?php echo $row['image'] ?>" alt="Image Title" />
 				</a>
 				<div class="postcard__text t-dark">
-					<h3 class="postcard__title yellow"><a href="#">Web Designer / Developer</a></h3>
+					<h3 class="postcard__title yellow"><a href="#"><?php echo $row['title'] ?></a></h3>
 					<div class="postcard__subtitle small">
 						<time datetime="2020-05-25 12:00:00">
 							<i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2023
 						</time>
 					</div>
 					<div class="postcard__bar"></div>
-					<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim,!</div>
+					<div class="postcard__preview-txt"><?php echo $row['description'] ?></div>
 					<ul class="postcard__tagbox">
-						<li class="tag__item"><i class="fas fa-tag mr-2"></i>France</li>
+						<li class="tag__item"><i class="fas fa-tag mr-2"></i><?php echo $row['company'] ?></li>
 						<li class="tag__item"><i class="fas fa-clock mr-2"></i> 3 mins.</li>
 						<li class="tag__item play yellow">
 							<a href="#"><i class="fas fa-play mr-2"></i>APPLY NOW</a>
@@ -133,6 +119,10 @@
 					</ul>
 				</div>
 			</article>
+
+			<?php
+				}
+				?>
 		</div>
 	</section>
 
