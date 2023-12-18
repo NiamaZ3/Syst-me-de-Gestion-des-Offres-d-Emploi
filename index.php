@@ -107,11 +107,10 @@ if(isset($_GET["offre"])){
 
     <section action="#" method="get" class="search">
         <h2>Find Your Dream Job</h2>
-        <form class="form-inline">
+        <form class="form-inline" action="search.php" >
             <div class="form-group mb-2">
-                <input type="text" name="keywords" placeholder="search" onclick="search()">
-
-
+               <input type="text" name="keywords" placeholder="search" >
+                
             </div>
             <!-- <div class="form-group mx-sm-3 mb-2">
 				<input type="text" name="location" placeholder="Location">

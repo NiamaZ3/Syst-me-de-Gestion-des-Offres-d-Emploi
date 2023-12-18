@@ -7,10 +7,11 @@
 if(isset($_GET["titre"])){
     $titre =  $_GET['titre'];
     if(empty($titre)){
-        $sql = "SELECT * FROM offre ";
+        $sql = "SELECT * FROM offre WHERE titre LIKE '%$titre%'";
+       
 }
     else{
-        $sql = "SELECT * FROM offre WHERE titre LIKE '%$titre%'";
+        $sql = "SELECT * FROM offre ";
 
     }
 }
